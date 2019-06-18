@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      User Records
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+ 
+<ion-content padding>
+<ion-list>
+    <ion-item>
+        <ion-label floating>Name :</ion-label>
+        <ion-input type="text" value="" [(ngModel)]="model.name"></ion-input>
+      </ion-item>            
+      <ion-item>
+        <ion-label floating>Mobile Number :</ion-label>
+        <ion-textarea   type="password" row="10" [(ngModel)]="model.number"></ion-textarea>
+      </ion-item> 
+      <ion-item>
+        <ion-label floating>Address :</ion-label>
+        <ion-input type="text" value="" [(ngModel)]="model.address"></ion-input>
+      </ion-item> 
+      <ion-item>
+        <ion-label>Gender</ion-label>
+        <ion-select name="Select One" [(ngModel)]="model.gender" required>
+          <ion-option value="male">Male</ion-option>
+          <ion-option value="female">Female</ion-option>
+        </ion-select>
+      </ion-item> 
+      <ion-item>
+          <button type="button" (click)="addUser()" ion-button full >Submit</button>
+      </ion-item>
+</ion-list>
+ 
+  <ion-card>
+    <ion-card-header>
+      Swipe item to the left to delete or edit
+    </ion-card-header>
+  </ion-card>
+  <ion-list>
+    <ion-item-sliding *ngFor="let user of users">
+      <ion-item>
+        <h3>Name: {{user.name}}</h3>
+        <p>Mobile Number: {{user.number}}</p>
+        <p>Address: {{user.address}}</p>
+        <p>Gender: {{user.gender}}</p>
+      </ion-item>
+      <ion-item-options>
+        <button ion-button color="success" (click)="updateUser(user)">
+            <ion-icon name="ios-create"></ion-icon>
+            edit
+        </button>
+        <button ion-button color="danger" (click)="deleteUser(user.$key)">
+        <ion-icon name="ios-trash"></ion-icon>
+        delete
+      </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+ 
+</ion-content>
